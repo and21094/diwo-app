@@ -28,6 +28,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -184,10 +186,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            if (email.equals("diwoapp@ucr.co.cr")) {
+                if (password.equals("diwoapp")) {
+                    showProgress(true);
+                    mAuthTask = new UserLoginTask(email, password);
+                    mAuthTask.execute((Void) null);
+                } else {
+                    mPasswordView.setError("Contraseña incorrecta.");
+                }
+            } else {
+                mEmailView.setError("Este usuario no está registrado.");
+            }
         }
+
     }
 
     private boolean isEmailValid(String email) {
@@ -333,7 +344,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+                    Toast.makeText(getApplicationContext(), "INICIO SESION", Toast.LENGTH_SHORT).show();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
