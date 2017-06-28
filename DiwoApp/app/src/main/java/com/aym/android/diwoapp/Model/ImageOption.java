@@ -6,22 +6,23 @@ package com.aym.android.diwoapp.Model;
 
 public class ImageOption {
 
-    private String image;
+    private int image;
     private String name;
     private boolean answer;
 
     public ImageOption() {}
 
-    public ImageOption(String image, String name) {
+    public ImageOption(int image, String name, boolean answer) {
         this.image = image;
         this.name = name;
+        this.answer = answer;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

@@ -35,7 +35,7 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text='¿Cuál de estas es "mujer"?'
+                    android:text="¿Pregunta?"
                     android:textAppearance="@style/TextAppearance.AppCompat.Button"
                     android:textSize="15dp"
                     tools:layout_editor_absoluteX="8dp"
@@ -65,14 +65,15 @@
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:layout_weight="1"
-                                    app:srcCompat="@drawable/house" />
+                                    app:srcCompat="@drawable/defaultimg" />
 
                                 <Button
                                     android:id="@+id/option1"
+                                    style="@style/Theme.AppCompat.Dialog"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Casa" />
+                                    android:text="option" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -86,14 +87,15 @@
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:layout_weight="1"
-                                    app:srcCompat="@drawable/dog" />
+                                    app:srcCompat="@drawable/defaultimg" />
 
                                 <Button
                                     android:id="@+id/option2"
+                                    style="@style/Theme.AppCompat.Dialog"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Perro" />
+                                    android:text="option" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -119,14 +121,15 @@
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:layout_weight="1"
-                                    app:srcCompat="@drawable/girl" />
+                                    app:srcCompat="@drawable/defaultimg" />
 
                                 <Button
                                     android:id="@+id/option3"
+                                    style="@style/Theme.AppCompat.Dialog"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Niña" />
+                                    android:text="option" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -140,14 +143,15 @@
                                     android:layout_width="150dp"
                                     android:layout_height="150dp"
                                     android:layout_weight="1"
-                                    app:srcCompat="@drawable/woman" />
+                                    app:srcCompat="@drawable/defaultimg" />
 
                                 <Button
                                     android:id="@+id/option4"
+                                    style="@style/Theme.AppCompat.Dialog"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Mujer" />
+                                    android:text="option" />
                             </LinearLayout>
 
                         </LinearLayout>
