@@ -8,131 +8,66 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aym.android.diwoapp.Model.ImageOption;
-import com.aym.android.diwoapp.Model.ImageQuestion;
+import com.aym.android.diwoapp.Model.SelectQuestion;
 
 import java.util.LinkedList;
 
-public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
+public class Intro2Activity extends AppCompatActivity implements View.OnClickListener {
 
-    public LinkedList<ImageQuestion> questionsOne = new LinkedList<>();
+    public LinkedList<SelectQuestion> questions= new LinkedList<>();
     public TextView questionTitle;
-    public ImageView imageOption1;
-    public ImageView imageOption2;
-    public ImageView imageOption3;
-    public ImageView imageOption4;
+    public int actualQuestion = 0;
+    public SelectQuestion Newquestion;
 
     public Button button1;
     public Button button2;
     public Button button3;
-    public Button button4;
-
-    public int actualQuestion = 0;
-    ImageQuestion Newquestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intro);
+        setContentView(R.layout.activity_intro2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        questionTitle = (TextView) findViewById(R.id.question);
+        questionTitle = (TextView) findViewById(R.id.question2);
 
-        imageOption1 = (ImageView) findViewById(R.id.imageOption1);
-        imageOption2 = (ImageView) findViewById(R.id.imageOption2);
-        imageOption3 = (ImageView) findViewById(R.id.imageOption3);
-        imageOption4 = (ImageView) findViewById(R.id.imageOption4);
-
-        button1 = (Button) findViewById(R.id.option1);
+        button1 = (Button) findViewById(R.id.option1q2);
         button1.setOnClickListener(this);
-        button2 = (Button) findViewById(R.id.option2);
+        button2 = (Button) findViewById(R.id.option2q2);
         button2.setOnClickListener(this);
-        button3 = (Button) findViewById(R.id.option3);
+        button3 = (Button) findViewById(R.id.option3q2);
         button3.setOnClickListener(this);
-        button4 = (Button) findViewById(R.id.option4);
-        button4.setOnClickListener(this);
 
         createQuestions();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        AlertDialog alertDialog;
-
-        alertDialogBuilder.setMessage("¡Bienvenido!"+
-                " \n\n En esta lección aprenderas: \n hombre \n mujer \n niño \n niña \n\n"+
-                "¿Empezamos?");
-        alertDialogBuilder.setPositiveButton("Continuar",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-        alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
     }
 
-    public void createQuestions(){
-        ImageQuestion question1 = new ImageQuestion();
-        ImageQuestion question2 = new ImageQuestion();
-        ImageQuestion question3 = new ImageQuestion();
-        ImageQuestion question4 = new ImageQuestion();
+    public void createQuestions() {
+        SelectQuestion question1 = new SelectQuestion("¿Cómo se dice \"Hombre\"?", "Jayiwa", "Chíchi", "Laglӧwa");
+        questions.add(question1);
 
-        question1.setTitle("¿Cuál es una \"Mujer\"?");
-        question1.setOption1(new ImageOption(R.drawable.house, "Jú", false));
-        question1.setOption2(new ImageOption(R.drawable.dog, "Chíchi", false));
-        question1.setOption3(new ImageOption(R.drawable.girl, "Yabά", false));
-        question1.setOption4(new ImageOption(R.drawable.woman, "Laglӧwa", true));
+        SelectQuestion question2 = new SelectQuestion("¿Cómo se dice \"Niño\"?", "Kάl", "Yabά", "Michi");
+        questions.add(question2);
 
-        questionsOne.add(question1);
+        SelectQuestion question3 = new SelectQuestion("¿\"Laglӧwa\" significa?", "Hombre", "Niña", "Mujer");
+        questions.add(question3);
 
-        question2.setTitle("¿Cuál es un \"Niño\"?");
-        question2.setOption1(new ImageOption(R.drawable.cat, "Michi", false));
-        question2.setOption2(new ImageOption(R.drawable.man, "Jayiwa", false));
-        question2.setOption3(new ImageOption(R.drawable.boy, "Yabά", true));
-        question2.setOption4(new ImageOption(R.drawable.woman, "Laglӧwa", false));
-
-        questionsOne.add(question2);
-
-        question3.setTitle("¿Cuál es un \"Hombre\"?");
-        question3.setOption1(new ImageOption(R.drawable.man, "Jayiwa", true));
-        question3.setOption2(new ImageOption(R.drawable.tree, "Kάl", false));
-        question3.setOption3(new ImageOption(R.drawable.banana, "chámó", false));
-        question3.setOption4(new ImageOption(R.drawable.girl, "Yabά", true));
-
-        questionsOne.add(question3);
-
-        question4.setTitle("¿Cuál es una \"Niña\"?");
-        question4.setOption1(new ImageOption(R.drawable.cloud, "Mӧ", false));
-        question4.setOption2(new ImageOption(R.drawable.dog, "Chíchi", false));
-        question4.setOption3(new ImageOption(R.drawable.woman, "Laglӧwa", false));
-        question4.setOption4(new ImageOption(R.drawable.girl, "Yabά", true));
-
-        questionsOne.add(question4);
+        SelectQuestion question4 = new SelectQuestion("¿\"Yaba\" significa?", "Mujer", "Niña", "Hombre");
+        questions.add(question4);
 
         questionTitle.setText(question1.getTitle());
-
-        imageOption1.setImageResource(question1.getOption1().getImage());
-        imageOption2.setImageResource(question1.getOption2().getImage());
-        imageOption3.setImageResource(question1.getOption3().getImage());
-        imageOption4.setImageResource(question1.getOption4().getImage());
-
-        button1.setText(question1.getOption1().getName());
-        button2.setText(question1.getOption2().getName());
-        button3.setText(question1.getOption3().getName());
-        button4.setText(question1.getOption4().getName());
-
+        button1.setText(question1.getOption1());
+        button2.setText(question1.getOption2());
+        button3.setText(question1.getOption3());
     }
-
 
     @Override
     public void onClick(View v) {
@@ -146,21 +81,15 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         actualQuestion ++;
 
                         if (actualQuestion != 4) {
-                            Newquestion = questionsOne.get(actualQuestion);
+                            Newquestion = questions.get(actualQuestion);
 
                             questionTitle.setText(Newquestion.getTitle());
 
-                            imageOption1.setImageResource(Newquestion .getOption1().getImage());
-                            imageOption2.setImageResource(Newquestion.getOption2().getImage());
-                            imageOption3.setImageResource(Newquestion.getOption3().getImage());
-                            imageOption4.setImageResource(Newquestion.getOption4().getImage());
-
-                            button1.setText(Newquestion.getOption1().getName());
-                            button2.setText(Newquestion.getOption2().getName());
-                            button3.setText(Newquestion.getOption3().getName());
-                            button4.setText(Newquestion.getOption4().getName());
+                            button1.setText(Newquestion.getOption1());
+                            button2.setText(Newquestion.getOption2());
+                            button3.setText(Newquestion.getOption3());
                         } else {
-                            Intent intent = new Intent(IntroActivity.this, Intro2Activity.class);
+                            Intent intent = new Intent(Intro2Activity.this, Intro3Activity.class);
                             startActivity(intent);
                         }
 
@@ -171,22 +100,9 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         snackBarView.setBackgroundColor(Color.rgb(228, 123, 0));
 
         switch (v.getId()){
-            case R.id.option1:
+            case R.id.option1q2:
                 switch (actualQuestion) {
                     case 0:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-                    case 2:
                         alertDialogBuilder.setMessage("Felicidades acertaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -212,52 +128,8 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
                         break;
-                    case 3:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-
-                }
-                break;
-            case R.id.option2:
-                switch (actualQuestion) {
-                    case 0:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
                     case 2:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-                    case 1:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
+                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -285,22 +157,9 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
 
                 }
                 break;
-            case R.id.option3:
+            case R.id.option2q2:
                 switch (actualQuestion) {
                     case 0:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-                    case 2:
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -326,52 +185,8 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
                         break;
-                    case 3:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-
-                }
-                break;
-            case R.id.option4:
-                switch (actualQuestion) {
-                    case 0:
-                        alertDialogBuilder.setMessage("Felicidades acertaste \n\n Mujer = Laglӧwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
                     case 2:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
-                        alertDialogBuilder.setPositiveButton("Continuar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        snackbar.show();
-                                    }
-                                });
-
-                        alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                        break;
-                    case 1:
-                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
+                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -399,13 +214,70 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
 
                 }
                 break;
+            case R.id.option3q2:
+                switch (actualQuestion) {
+                    case 0:
+                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
+                        alertDialogBuilder.setPositiveButton("Continuar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        snackbar.show();
+                                    }
+                                });
+
+                        alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+                    case 1:
+                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
+                        alertDialogBuilder.setPositiveButton("Continuar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        snackbar.show();
+                                    }
+                                });
+
+                        alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+                    case 2:
+                        alertDialogBuilder.setMessage("Felicidades acertaste \n\n Mujer = Laglӧwa");
+                        alertDialogBuilder.setPositiveButton("Continuar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        snackbar.show();
+                                    }
+                                });
+
+                        alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+                    case 3:
+                        alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
+                        alertDialogBuilder.setPositiveButton("Continuar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        snackbar.show();
+                                    }
+                                });
+
+                        alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+
+                }
+                break;
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-        // Esto es lo que hace mi botón al pulsar ir a atrás
+            // Esto es lo que hace mi botón al pulsar ir a atrás
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             AlertDialog alertDialog;
 
@@ -414,7 +286,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                            Intent intent = new Intent(Intro2Activity.this, MainActivity.class);
                             startActivity(intent);
                         }
                     });
