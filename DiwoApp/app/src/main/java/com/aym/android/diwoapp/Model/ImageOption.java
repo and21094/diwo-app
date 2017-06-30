@@ -41,4 +41,13 @@ public class ImageOption {
     public void setAnswer(boolean answer) {
         this.answer = answer;
     }
+
+    @Override
+    public String toString() {
+        return "ImageOption{" +
+                "image=" + image +
+                ", name='" + name + '\'' +
+                ", answer=" + answer +
+                '}';
+    }
 }

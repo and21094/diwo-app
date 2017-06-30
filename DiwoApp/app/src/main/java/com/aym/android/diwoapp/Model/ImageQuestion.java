@@ -61,4 +61,15 @@ public class ImageQuestion {
     public void setOption4(ImageOption option4) {
         this.option4 = option4;
     }
+
+    @Override
+    public String toString() {
+        return "ImageQuestion{" +
+                "title='" + title + '\'' +
+                ", option1=" + option1 +
+                ", option2=" + option2 +
+                ", option3=" + option3 +
+                ", option4=" + option4 +
+                '}';
+    }
 }
