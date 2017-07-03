@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,15 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
     public ImageView imageOption2;
     public ImageView imageOption3;
     public ImageView imageOption4;
+    public ProgressBar bar;
 
     public Button button1;
     public Button button2;
     public Button button3;
     public Button button4;
 
+    public int right= 0;
+    public int wrong = 0;
     public int actualQuestion = 0;
     ImageQuestion Newquestion;
 
@@ -46,6 +50,9 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
 
         questionTitle = (TextView) findViewById(R.id.question);
+        bar = (ProgressBar)findViewById(R.id.progressBar);
+        bar.setMax(11);
+
 
         imageOption1 = (ImageView) findViewById(R.id.imageOption1);
         imageOption2 = (ImageView) findViewById(R.id.imageOption2);
@@ -133,9 +140,23 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    public void disableButtons(){
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
+    }
+
+    public void enableButtons(){
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+    }
 
     @Override
     public void onClick(View v) {
+        disableButtons();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         AlertDialog alertDialog;
         final Snackbar snackbar = Snackbar
@@ -144,6 +165,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onClick(View view) {
                         actualQuestion ++;
+                        bar.setProgress(actualQuestion);
 
                         if (actualQuestion != 4) {
                             Newquestion = questionsOne.get(actualQuestion);
@@ -159,8 +181,13 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                             button2.setText(Newquestion.getOption2().getName());
                             button3.setText(Newquestion.getOption3().getName());
                             button4.setText(Newquestion.getOption4().getName());
+
+                            enableButtons();
                         } else {
+                            enableButtons();
                             Intent intent = new Intent(IntroActivity.this, Intro2Activity.class);
+                            intent.putExtra("totalRight", right);
+                            intent.putExtra("totalWrong", wrong);
                             startActivity(intent);
                         }
 
@@ -174,6 +201,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
             case R.id.option1:
                 switch (actualQuestion) {
                     case 0:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -187,6 +215,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 2:
+                        right++;
                         alertDialogBuilder.setMessage("Felicidades acertaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -200,6 +229,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 1:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -213,6 +243,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 3:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -231,6 +262,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
             case R.id.option2:
                 switch (actualQuestion) {
                     case 0:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -244,6 +276,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 2:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -257,6 +290,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 1:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -270,6 +304,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 3:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -288,6 +323,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
             case R.id.option3:
                 switch (actualQuestion) {
                     case 0:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -301,6 +337,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 2:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -314,6 +351,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 1:
+                        right++;
                         alertDialogBuilder.setMessage("Felicidades acertaste \n\n Niño = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -327,6 +365,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 3:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niña = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -345,6 +384,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
             case R.id.option4:
                 switch (actualQuestion) {
                     case 0:
+                        right++;
                         alertDialogBuilder.setMessage("Felicidades acertaste \n\n Mujer = Laglӧwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -358,6 +398,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 2:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Hombre = Jayiwa");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -371,6 +412,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 1:
+                        wrong++;
                         alertDialogBuilder.setMessage("Ups, te equivocaste \n\n Niño = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
@@ -384,6 +426,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
                         alertDialog.show();
                         break;
                     case 3:
+                        wrong++;
                         alertDialogBuilder.setMessage("Felicidades acertaste \n\n Niña = Yabά");
                         alertDialogBuilder.setPositiveButton("Continuar",
                                 new DialogInterface.OnClickListener() {
