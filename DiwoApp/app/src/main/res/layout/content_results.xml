@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.aym.android.diwoapp.Intro2Activity"
-    tools:showIn="@layout/activity_intro2">
+    tools:context="com.aym.android.diwoapp.ResultsActivity"
+    tools:showIn="@layout/activity_results">
 
     <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="487dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -22,65 +22,60 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:fillViewport="true"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/finish" />
+
                 <TextView
-                    android:id="@+id/question2"
+                    android:layout_width="265dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="¡Resultados de tu lección!"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                    android:textSize="15dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="355dp" />
+
+                <TextView
+                    android:id="@+id/goodAnswers"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:gravity="center"
-                    android:text="¿Pregunta?"
+                    android:text="Aciertos:  "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                    android:textSize="15dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="355dp" />
+
+                <TextView
+                    android:id="@+id/wrongAnswers"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="Errores:  "
                     android:textAppearance="@style/TextAppearance.AppCompat.Button"
                     android:textSize="15dp"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="355dp" />
 
                 <Button
-                    android:id="@+id/option1q2"
-                    style="@style/Theme.AppCompat.Dialog"
+                    android:id="@+id/goToMenu"
+                    style="@style/Widget.AppCompat.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="option" />
-
-                <Button
-                    android:id="@+id/option2q2"
-                    style="@style/Theme.AppCompat.Dialog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="option" />
-
-                <Button
-                    android:id="@+id/option3q2"
-                    style="@style/Theme.AppCompat.Dialog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="option" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ProgressBar
-                        android:id="@+id/progressBar2"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="39dp"
-                        tools:layout_editor_absoluteX="24dp"
-                        tools:layout_editor_absoluteY="479dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginBottom="12dp" />
-                </RelativeLayout>
+                    android:layout_weight="1"
+                    android:text="Volver al menú principal" />
 
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>
