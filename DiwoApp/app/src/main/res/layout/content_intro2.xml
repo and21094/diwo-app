@@ -76,6 +76,14 @@
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentStart="true"
                         android:layout_marginBottom="12dp" />
+
+                    <ImageView
+                        android:id="@+id/banner1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/progressBar2"
+                        android:layout_alignParentStart="true"
+                        app:srcCompat="@drawable/banner1" />
                 </RelativeLayout>
 
             </LinearLayout>

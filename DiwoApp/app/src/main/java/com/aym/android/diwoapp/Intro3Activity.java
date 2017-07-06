@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
     public TextInputLayout layout;
     public String nextAction = "¡Siguiente Pregunta!";
 
-
+    public ImageView banner;
     public Button button1;
     public ProgressBar bar;
 
@@ -62,17 +63,19 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
             wrong = extras.getInt("totalWrong");
         }
 
+        banner = (ImageView) findViewById(R.id.banner2);
+
         createQuestions();
 
     }
 
     public void createQuestions(){
 
-        WriteQuestion question1 = new WriteQuestion("Traduce \"egla laglӧwa\"", "una mujer");
+        WriteQuestion question1 = new WriteQuestion("Traduce \"laglӧwa\"", "mujer");
         questions.add(question1);
-        WriteQuestion question2 = new WriteQuestion("Traduce \"un hombre\"", "egla jayiwa");
+        WriteQuestion question2 = new WriteQuestion("Traduce \"hombre\"", "jayiwa");
         questions.add(question2);
-        WriteQuestion question3 = new WriteQuestion("Traduce \"egla yaba\"", "un niño");
+        WriteQuestion question3 = new WriteQuestion("Traduce \"yaba\"", "niño");
         questions.add(question3);
 
         questionTitle.setText(question1.getQuestion());
@@ -90,7 +93,6 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        disableButtons();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         AlertDialog alertDialog;
         final Snackbar snackbar = Snackbar
@@ -99,6 +101,15 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(View view) {
                         actualQuestion ++;
+
+                        if (actualQuestion == 1) {
+                            banner.setImageResource(R.drawable.banner6);
+                        }
+
+                        if (actualQuestion == 2) {
+                            banner.setImageResource(R.drawable.banner7);
+                        }
+
                         bar.setProgress(8+actualQuestion);
                         if (actualQuestion != 3) {
                             answer.setFocusableInTouchMode(false);
@@ -137,12 +148,13 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
             if (answer.getText().toString().length() == 0) {
                 answer.setError( "Escribe una respuesta" );
             } else {
+                disableButtons();
                 switch (actualQuestion) {
 
                     case 0:
                         if (Newquestion.getAnswer().equals(answer.getText().toString().toLowerCase().trim())){
                             right++;
-                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n egla laglӧwa = una mujer");
+                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n laglӧwa = mujer");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -155,7 +167,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                             alertDialog.show();
                         } else {
                             wrong++;
-                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n egla laglӧwa = una mujer");
+                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n laglӧwa = mujer");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -171,7 +183,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                     case 1:
                         if (Newquestion.getAnswer().equals(answer.getText().toString().toLowerCase().trim())){
                             right++;
-                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n un hombre = egla jayiwa");
+                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n hombre = jayiwa");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -184,7 +196,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                             alertDialog.show();
                         } else {
                             wrong++;
-                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n un hombre = egla jayiwa");
+                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n hombre = jayiwa");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -201,7 +213,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                         if (Newquestion.getAnswer().equals(answer.getText().toString().toLowerCase().trim())
                                 || "una niña".equals(answer.getText().toString().toLowerCase())){
                             right++;
-                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n egla yabά = un niño \n\n o \n\n egla yabά = una niña");
+                            alertDialogBuilder.setMessage("Felicidades acertaste \n\n yabά = niño \n\n o \n\n yabά = niña");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override
@@ -214,7 +226,7 @@ public class Intro3Activity extends AppCompatActivity implements View.OnClickLis
                             alertDialog.show();
                         } else {
                             wrong++;
-                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n egla yabά = un niño \n\n o \n\n egla yabά = una niña");
+                            alertDialogBuilder.setMessage("Ups, te equivocaste \n\n yabά = niño \n\n o \n\n yabά = niña");
                             alertDialogBuilder.setPositiveButton("Continuar",
                                     new DialogInterface.OnClickListener() {
                                         @Override

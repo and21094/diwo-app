@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class Intro2Activity extends AppCompatActivity implements View.OnClickLis
     public int actualQuestion = 0;
     public SelectQuestion Newquestion;
     public ProgressBar bar;
+    public ImageView banner;
 
     public int right = 0;
     public int wrong = 0;
@@ -57,6 +59,8 @@ public class Intro2Activity extends AppCompatActivity implements View.OnClickLis
         button2.setOnClickListener(this);
         button3 = (Button) findViewById(R.id.option3q2);
         button3.setOnClickListener(this);
+
+        banner = (ImageView) findViewById(R.id.banner1);
 
         createQuestions();
 
@@ -107,6 +111,18 @@ public class Intro2Activity extends AppCompatActivity implements View.OnClickLis
                     public void onClick(View view) {
                         actualQuestion ++;
                         bar.setProgress(4+actualQuestion);
+
+                        if (actualQuestion == 1) {
+                            banner.setImageResource(R.drawable.banner2);
+                        }
+
+                        if (actualQuestion == 2) {
+                            banner.setImageResource(R.drawable.banner3);
+                        }
+
+                        if (actualQuestion == 3) {
+                            banner.setImageResource(R.drawable.banner4);
+                        }
 
                         if (actualQuestion != 4) {
                             Newquestion = questions.get(actualQuestion);
